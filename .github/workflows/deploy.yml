@@ -15,8 +15,6 @@ jobs:
               run: |
                   npm ci
                   npm run build
-
-            - name: Set ENV
               env:
                   API_KEY_PIXABAY: ${{ secrets.API_KEY_PIXABAY }}
                   
