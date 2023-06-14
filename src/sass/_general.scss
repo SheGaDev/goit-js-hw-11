@@ -1,0 +1,241 @@
+@use "base";
+
+html {
+    scroll-behavior: smooth;
+}
+header {
+    height: 96px;
+}
+.is-hidden {
+    visibility: hidden;
+}
+.search-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.container-search {
+    z-index: 10;
+    position: relative;
+    top: 15px;
+    min-width: 300px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input-search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 4% 60px 4% 15px;
+        outline: none;
+        border-radius: 5px;
+        color: base.$dark-text-color;
+        background-color: base.$dark-input-color;
+        border: 1px solid base.$dark-border-color;
+    }
+    .input-search::placeholder {
+        color: base.$dark-text-color;
+    }
+    .input-search::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+    }
+    svg {
+        fill: base.$dark-text-color;
+    }
+    .input-search + .button-x-alt {
+        position: absolute;
+        right: 42px;
+        visibility: hidden;
+    }
+    .input-search:not(:placeholder-shown) + .button-x-alt {
+        visibility: visible;
+    }
+    .button-x-alt {
+        width: 16px;
+        height: 16px;
+        padding: 0;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .search-x-alt {
+            @include base.animation($target: fill);
+        }
+        .search-x-alt:is(:hover, :focus) {
+            fill: base.$hover-color;
+        }
+    }
+    .button-search {
+        position: absolute;
+        right: 12px;
+        height: 20px;
+        width: 20px;
+        padding: 0;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .button-search-svg {
+            @include base.animation($target: fill);
+        }
+        .button-search-svg:is(:hover, :focus) {
+            fill: base.$hover-color;
+        }
+    }
+}
+.gallery-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .load-more {
+        @include base.font($size: 16px, $weight: 600);
+        padding: 12px 24px;
+        outline: none;
+        border: 1px solid base.$dark-border-color;
+        color: white;
+        border-radius: 5px;
+        background-color: base.$dark-button-color;
+        margin-bottom: 40px;
+        @include base.animation;
+    }
+    .load-more:is(:hover, :focus) {
+        background-color: base.$hover-color;
+    }
+}
+.gallery {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    a {
+        div {
+            img {
+                width: 320px;
+                height: 210px;
+                background-size: cover;
+            }
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                justify-content: space-evenly;
+                p {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-size: 15px;
+                    font-weight: 500;
+                    line-height: 1.5;
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                    color: white;
+                    b {
+                        font-size: 16px;
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.wrapper-cover-menu {
+    position: absolute;
+    top: -62;
+    // left: 40%;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .hidden-cover-menu {
+        width: inherit;
+        .cover-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            span {
+                @include base.font($size: 12px, $weight: 500);
+            }
+            .menu-list {
+                width: 200px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin-bottom: 5px;
+                ul > li {
+                    @include base.font($size: 11px, $weight: 500);
+                    display: flex;
+                    align-items: center;
+                    .model-radio-icon {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                    .model-radio-icon::before {
+                        content: "";
+                        display: block;
+                        width: 10px;
+                        height: 10px;
+                        cursor: pointer;
+                        background-color: black;
+                        border-radius: 50%;
+                        border: 1px solid white;
+                    }
+                    .model-radio:checked + .model-radio-icon::before {
+                        background-color: white;
+                        border-radius: 50%;
+                        border: 2px solid black;
+                    }
+                }
+            }
+            .buttons {
+                display: flex;
+                gap: 5px;
+                button {
+                    @include base.font($size: 8px, $weight: 400);
+                    padding: 4px 8px;
+                    outline: none;
+                    border: 1px solid base.$dark-border-color;
+                    color: white;
+                    border-radius: 5px;
+                    background-color: base.$dark-button-color;
+                    margin-bottom: 4px;
+                    @include base.animation;
+                }
+            }
+        }
+        border-radius: 0 0 5px 5px;
+        background-color: base.$dark-button-color;
+        visibility: hidden;
+    }
+    .open-close-menu {
+        background-color: base.$dark-button-color;
+        border: 1px solid base.$dark-border-color;
+        outline: none;
+        border-radius: 0 0 5px 5px;
+        color: base.$dark-text-color;
+        padding: 7px 35px 5px 35px;
+        .svg-settings {
+            stroke: base.$dark-text-color;
+            fill: black;
+        }
+    }
+    .open-close-menu:is(:hover, :focus) + .svg-settings {
+        stroke: black;
+        fill: white;
+    }
+}
