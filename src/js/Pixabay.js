@@ -3,7 +3,7 @@ env.config();
 import axios from "axios";
 axios.defaults.baseURL = "https://pixabay.com/api/";
 import { Notify } from 'notiflix';
-
+console.log(process.env.API_KEY_PIXABAY)
 class Pixabay {
     #API_KEY = process.env.API_KEY_PIXABAY;
     #perPage = 40;
